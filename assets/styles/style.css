@@ -1,0 +1,43 @@
+ body{
+ 	background-image:url("image/picture.jpg");
+ 	background-repeat: no-repeat;
+        background-size:1700px 1000px;
+ 	
+ }
+ .container{
+	border:2px solid white;
+	border-radius:30px;
+	box-shadow: 10px 10px 8px 1px rgb(0,0,0,0.25);
+	background-image: linear-gradient(#ff80df, #8080ff);
+	width:300px;
+	height:360px;
+	margin:auto;
+	margin-top:10%;
+	color: white;
+}
+.container h1{
+	text-align: center;
+	margin-bottom:10%;
+}
+.container label{
+	margin-left:12%;
+	margin-right:5%;
+}
+.container input{
+	width:130px;
+}
+.container button{
+	margin-left:40%;
+	margin-top:10%;
+	padding:6px 12px 6px 12px;
+	border-radius:5px;
+
+}
+.container button:hover{
+	background-color:#b3ffe6;
+
+}
+.container a{
+	margin-left: 10%;
+	color:#bfff80;
+}
