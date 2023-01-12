@@ -3,6 +3,8 @@ package app
 import (
 	"html/template"
 	"net/http"
+
+
 )
 
 type Handler struct {
@@ -10,7 +12,6 @@ type Handler struct {
 }
 
 func (handler *Handler) signIn(w http.ResponseWriter, r *http.Request) {
-
 }
 
 func (handler *Handler) signUp(w http.ResponseWriter, r *http.Request) {
