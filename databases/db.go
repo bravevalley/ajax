@@ -6,7 +6,7 @@ var DB *sql.DB
 
 type users struct {
 	Username string
-	password string
+	Password string
 }
 
 func GetUsers() ([]users, error){
@@ -26,7 +26,7 @@ func GetUsers() ([]users, error){
 	for rows.Next() {
 		user := users{}
 
-		err := rows.Scan(&user.Username, &user.password)
+		err := rows.Scan(&user.Username, &user.Password)
 		if err != nil {
 			return xusers, nil
 		}

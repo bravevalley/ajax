@@ -8,7 +8,7 @@ import (
 
 var SessionDB *redis.Client
 
-func getData(key string) (string, error) {
+func GetData(key string) (string, error) {
 	val, err := SessionDB.Get(key).Result()
 	if err != nil {
 		return "", err
@@ -17,11 +17,19 @@ func getData(key string) (string, error) {
 	return val, err
 }
 
-func setData(key, value string, exp time.Duration) error {
+func SetData(key, value string, exp time.Duration) error {
 	err := SessionDB.Set(key, value, exp).Err()
 	if err != nil {
 		return err
 	}
 
 	return nil
+}
+
+func CheckData(key string) bool {
+	v, err := SessionDB.Exists(key).Result()
+	if err != nil || v == 0 {
+		return false
+	}
+	return true
 }
