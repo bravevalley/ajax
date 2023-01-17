@@ -41,7 +41,7 @@ func GetUsers() ([]users, error) {
 }
 
 
-func InputUser(us string, ps []byte, em string) error {
+func InputUser(us, ps, em string) error {
 	query, err := DB.Prepare(`		
 	INSERT INTO userbase VALUES(?, ?, ?)
 	`)
@@ -49,6 +49,8 @@ func InputUser(us string, ps []byte, em string) error {
 	if err != nil {
 		return err
 	}
+
+	defer query.Close()
 
 	_, err = query.Exec(us, ps, em)
 	if err != nil {

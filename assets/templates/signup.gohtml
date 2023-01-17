@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Signup Page</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/signup.css">
 </head>
+
 <body>
     <header>
         <h1>Signup</h1>
     </header>
     <main>
-        <form>
+        <form method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
+            <p class="user-ex" style="display: none;">User exists</p>
             <br>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -29,25 +32,57 @@
         <p>Copyright ©2022 Signup Page</p>
     </footer>
 
-	<script>
-		let password = document.getElementById('password');
-		let passwordCon = document.getElementById('password-confirm');
-		
-		
-		function dsBtn() {
-			if (passwordCon.value !== password.value) {
-				document.querySelector('#submit').disabled = true;
-				console.log(password.value)
-				console.log(passwordCon.value)
-				return
-			}
-			document.getElementById('submit').disabled = false;
-			console.log("enabled")
-			return
-		}
-		
-		document.getElementById("password-confirm").addEventListener("keyup", dsBtn)
+    <script>
+        let password = document.getElementById('password');
+        let passwordCon = document.getElementById('password-confirm');
+        const us = document.getElementById('username')
 
-	</script>
+
+        function dsBtn() {
+            if (passwordCon.value !== password.value) {
+                document.querySelector('#submit').disabled = true;
+                console.log(password.value)
+                console.log(passwordCon.value)
+                return
+            }
+            document.getElementById('submit').disabled = false;
+            console.log("enabled")
+            return
+        }
+
+        document.getElementById("password-confirm").addEventListener("keyup", dsBtn);
+
+        function usernamereq() {
+            const xhr = new XMLHttpRequest();
+            const node = document.createElement("div")
+            node.id = "user-ex";
+            node.innerText = "User exist";
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        if (xhr.responseText === "true") {
+                            console.log(xhr.responseText)
+                            document.querySelector(".user-ex").style.display = "inline"
+                        } else {
+                            document.querySelector(".user-ex").style.display = "none"
+                        }
+                    }
+                }
+
+            }
+            if (node != null) {
+
+            }
+
+            xhr.open("POST", "/checkuser");
+            xhr.send(us.value)
+
+        }
+
+        us.addEventListener('input', usernamereq)
+
+    </script>
 </body>
+
 </html>
