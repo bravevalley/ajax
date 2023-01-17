@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"html/template"
 	"log"
 	"os"
@@ -62,8 +61,6 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
-	fmt.Println("Connection secured")
 
 	webapp.Start()
 

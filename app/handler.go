@@ -17,7 +17,6 @@ type Handler struct {
 	template template.Template
 }
 
-
 //////////////////////// LOGIN //////////////////////////////
 
 func (handler *Handler) signIn(w http.ResponseWriter, req *http.Request) {
@@ -59,22 +58,21 @@ func (handler *Handler) signIn(w http.ResponseWriter, req *http.Request) {
 			Name:  "cbdk",
 			Value: sid.String(),
 		}
-		
+
 		err = query.SetData(sid.String(), us, 0*time.Second)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			log.Fatalln(err)
 		}
-		
+
 		http.SetCookie(w, c)
-		
+
 		http.Redirect(w, req, "/dashboard", http.StatusSeeOther)
 		return
 	}
-	
+
 	handler.template.ExecuteTemplate(w, "login.gohtml", nil)
 }
-
 
 //////////////////////// SIGNUP //////////////////////////////
 
@@ -99,7 +97,7 @@ func (handler *Handler) signUp(w http.ResponseWriter, req *http.Request) {
 			log.Fatal(err)
 		}
 
-		err = query.InputUser(us,string(passwd), em)
+		err = query.InputUser(us, string(passwd), em)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			log.Fatal(err)
@@ -112,7 +110,6 @@ func (handler *Handler) signUp(w http.ResponseWriter, req *http.Request) {
 	handler.template.ExecuteTemplate(w, "signup.gohtml", nil)
 }
 
-
 //////////////////////// DASHBOARD //////////////////////////////
 
 func (handler *Handler) dashboard(w http.ResponseWriter, req *http.Request) {
@@ -121,12 +118,12 @@ func (handler *Handler) dashboard(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/login", http.StatusSeeOther)
 		return
 	}
-	
+
 	if ok := query.CheckData(c.Value); !ok {
 		http.Redirect(w, req, "/login", http.StatusSeeOther)
 		return
 	}
-	
+
 	username, err := query.GetData(c.Value)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -139,8 +136,6 @@ func (handler *Handler) dashboard(w http.ResponseWriter, req *http.Request) {
 
 }
 
-
-
 //////////////////////// LOGOUT //////////////////////////////
 
 func (handler *Handler) logout(w http.ResponseWriter, req *http.Request) {
@@ -149,12 +144,12 @@ func (handler *Handler) logout(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/login", http.StatusSeeOther)
 		return
 	}
-	
+
 	if ok := query.CheckData(c.Value); !ok {
 		http.Redirect(w, req, "/login", http.StatusSeeOther)
 		return
 	}
-	
+
 	if err = query.RemoveData(c.Value); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		log.Fatalln(err)
@@ -162,8 +157,8 @@ func (handler *Handler) logout(w http.ResponseWriter, req *http.Request) {
 	}
 
 	http.SetCookie(w, &http.Cookie{
-		Name: "cbdk",
-		Value: c.Value,
+		Name:   "cbdk",
+		Value:  c.Value,
 		MaxAge: -1,
 	})
 
@@ -181,7 +176,8 @@ func (handler *Handler) checkuser(w http.ResponseWriter, req *http.Request) {
 
 		defer req.Body.Close()
 
-		ok := query.CheckData(string(rb)); if ok {
+		ok := query.CheckData(string(rb))
+		if ok {
 			io.WriteString(w, "true")
 			return
 		}

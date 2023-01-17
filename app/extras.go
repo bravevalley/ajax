@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"log"
 	"time"
 
@@ -20,5 +19,4 @@ func loadusers() {
 			log.Fatalln(err)
 		}
 	}
-	fmt.Println("USerdata Loaded to memory")
 }

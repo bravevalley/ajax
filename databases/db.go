@@ -40,7 +40,6 @@ func GetUsers() ([]users, error) {
 
 }
 
-
 func InputUser(us, ps, em string) error {
 	query, err := DB.Prepare(`		
 	INSERT INTO userbase VALUES(?, ?, ?)

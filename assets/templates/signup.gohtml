@@ -41,8 +41,6 @@
         function dsBtn() {
             if (passwordCon.value !== password.value) {
                 document.querySelector('#submit').disabled = true;
-                console.log(password.value)
-                console.log(passwordCon.value)
                 return
             }
             document.getElementById('submit').disabled = false;
@@ -62,7 +60,6 @@
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         if (xhr.responseText === "true") {
-                            console.log(xhr.responseText)
                             document.querySelector(".user-ex").style.display = "inline"
                         } else {
                             document.querySelector(".user-ex").style.display = "none"
