@@ -26,16 +26,16 @@ func init() {
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
-	
+
 	webapp = app.App{}
 
 	// MySql database Configuration
 	cfg := mysql.Config{
-		User:   "root",
-		Passwd: os.Getenv("DBPASSWD"),
-		Net:    "tcp",
-		Addr:   "127.0.0.1:13306",
-		DBName: "testDB",
+		User:                 "root",
+		Passwd:               os.Getenv("DBPASSWD"),
+		Net:                  "tcp",
+		Addr:                 "127.0.0.1:13306",
+		DBName:               "testDB",
 		AllowNativePasswords: true,
 	}
 
@@ -50,7 +50,7 @@ func init() {
 
 func main() {
 	webapp.Init(*tpl)
-	
+
 	// Testing connection.
 
 	err = databases.DB.Ping()
@@ -64,5 +64,7 @@ func main() {
 	}
 
 	fmt.Println("Connection secured")
+
+	webapp.Start()
 
 }

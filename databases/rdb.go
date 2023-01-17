@@ -33,3 +33,7 @@ func CheckData(key string) bool {
 	}
 	return true
 }
+
+func RemoveData(key string) error {
+	return SessionDB.Del(key).Err()
+}

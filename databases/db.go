@@ -1,6 +1,8 @@
 package databases
 
-import "database/sql"
+import (
+	"database/sql"
+)
 
 var DB *sql.DB
 
@@ -9,7 +11,7 @@ type users struct {
 	Password string
 }
 
-func GetUsers() ([]users, error){
+func GetUsers() ([]users, error) {
 	xusers := []users{}
 	queryStatment, err := DB.Prepare("SELECT username, password FROM userbase;")
 	if err != nil {
@@ -35,5 +37,23 @@ func GetUsers() ([]users, error){
 	}
 
 	return xusers, nil
+
+}
+
+
+func InputUser(us string, ps []byte, em string) error {
+	query, err := DB.Prepare(`		
+	INSERT INTO userbase VALUES(?, ?, ?)
+	`)
+
+	if err != nil {
+		return err
+	}
+
+	_, err = query.Exec(us, ps, em)
+	if err != nil {
+		return err
+	}
+	return nil
 
 }

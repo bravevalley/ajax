@@ -22,7 +22,7 @@ func (router *Router) ServeContent(tpl template.Template) {
 	}
 
 	router.Mux.HandleFunc("/signup", handlers.signUp)
-	router.Mux.HandleFunc("/signin", handlers.signIn)
+	router.Mux.HandleFunc("/login", handlers.signIn)
 	router.Mux.HandleFunc("/dashboard", handlers.dashboard)
 	router.Mux.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 

@@ -26,22 +26,21 @@ nav li {
 }
 nav a {
     display: block;
-	padding: 14px 16px;
-	text-decoration: none;
-	color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: black;
 }
-	nav a:hover {
-	background-color: #ddd;
+    nav a:hover {
+    background-color: #ddd;
 }
-	main {
-	padding: 20px;
+    main {
+    padding: 20px;
 }
-	section {
-	margin-bottom: 20px;
+    section {
+    margin-bottom: 20px;
 }
-	footer {
-	background-color: #E0E0E0;
-	padding: 10px;
-	text-align: center;
+    footer {
+    background-color: #E0E0E0;
+    padding: 10px;
+    text-align: center;
 }
-		
